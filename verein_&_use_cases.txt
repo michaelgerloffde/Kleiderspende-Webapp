@@ -1,0 +1,60 @@
+Verein: Stoffwechsel e.V. 
+    -> Sitz: München
+    -> Plz: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Interpretationsspielräume:
+
+-> Kann man die Art der Kleidungsstücke angeben?
+    eventuell relevant für empfehlungen Kriesengebiete: Beispiel Ukraine-kalt-jacken
+
+
+
+Anforderungen
+
+
+e: Drop-Down:
+    1. Übergabe an Geschaäftsstelle 
+    2. Abholung Sammelfahrzeug (Adressvalidierung (Radius 25km?))
+
+f: Drop-Down: Übergabe an der Geschäftstelle (Direkte Prüfung der Eingabe)
+    -> Damit die Abholadresse als read-only ausgegraut
+    Zusätzliche Angaben
+        ->  Art_der_Kleidung
+        -> Auswahl_aktueller_Kriegsgebiete
+
+g: Drop-Down: Abholung 
+    - Zusätzliche Angaben: 
+        -> Abholadresse - Adressvalidierung: Prüfung Radius zur Geschäftstelle
+        -> Art_der_Kleidung - Prüfung (geben wir Kategorien an als dropdown????) empfehlung für Kategorien
+        -> Auswahl_aktueller_Kriegsgebiete
+
+
+h: Adressvalidierung -> (erste beiden plz Zahlen identisch)
+
+
+
+i: erfolgreiche Regristrieung (egal ob Abhol oder vor Ort)
+    -> Bestätigung der Daten: Art_der_Kleidung, Auswahl_aktueller_Kriegsgebiete, Datum-Uhrezit, Ort 
+
+    
+
+Interpretationsspielräume:
+
+-> Kann man die Art der Kleidungsstücke angeben?
+    eventuell relevant für empfehlungen Kriesengebiete: Beispiel Ukraine-kalt-jacken
+
+- Wie wird geprüft Ob übergrabe an der Geschäftsstelle 
+    vom dem Tablet gewählt wir oder von mir selber auf meinem handy (ohne sinn)
+    Zugriffsrechte???

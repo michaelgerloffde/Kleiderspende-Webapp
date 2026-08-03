@@ -84,7 +84,9 @@ Spielräume Ablauf
     2.1. Übergabe an Geschaäftsstelle: Keine Adresse nötige -> weiter zu Art der Kleidungsstücke
     2.2. Abholung 
         - Angaben: PlZ (Textfeld-dropdown), Name an Klingel (Textfeld), Straße & Hausnummer (Textfeld)
-        - PLZ: Als Textfeld oder Dropdown? Gedanke: Bei drop-down durch die vordefinierte Auswahl wird eine Adresse außerhalb des Abholradiuses verwährt - Falls dropdown mit Hinweis - wenn der Benutzer sich fragt wieso sein plz nicht verfügbar ist 
+        - PLZ: Als Textfeld oder Dropdown? 
+            *Als Textfeld, dropdown als verworfene idee in bericht*
+        Gedanke: Bei drop-down durch die vordefinierte Auswahl wird eine Adresse außerhalb des Abholradiuses verwährt - Falls dropdown mit Hinweis - wenn der Benutzer sich fragt wieso sein plz nicht verfügbar ist 
         - Alle Angaben Pflichtangaben, Texfelder auf Umwandlungsprüfung, PLZ auf Plausibilitätsprüfung weil das der entscheidende Faktor (erste 2 ziffern identisch)
     2.3 Adressvalidierung:
         - Positiv: weiter Kleidungsstücke
@@ -93,3 +95,63 @@ Spielräume Ablauf
         - Alle Eingaben: Pflichtfeldprüfung & Umwandlungsprüfung
         - PlZ: zusätzlich Plausibilitätsprüfung (direkt am Anfang nach Name)
             -> Transactionlevel PlZ instant 
+3 Art_der_Kleidung wählen
+    - Wie soll die Eingabe angelegt werden?
+        Eingabefeld als Dropdown anlegen
+            - vordefinierte Kleider Arten: Oberteile, Hosen, Jacken, Schuhe, Mix, Sonstige
+     -wie sollen wir das Transaktionlevel setzten
+                    - Transactionlevel direkt (nächstes feld ist Krisen gebiet)
+    - Sollen wir eine Empfehlung auf Basis der der Kleidung aussprechen?
+        - empfehlungen auf basis der Art als hinweisgeben zur wahl des Kriesengebiets
+   - Was ist wenn jemand nur zwei verschiedne Kleidungsstücke abgeben möchte?
+    einfach Auswahl am einfachsten zum anlegen mit der Auswahl von Mix
+    - legen wir einen Platzhalter an?
+        -> Am wahrscheinlichsten mistet jemand Kleider aus die er spenden möchte -> Platzhalter = mix realistisch 
+4. Eingabe Kriesengebiete wählen
+    - Erlauben wir eine mehrfach Auswahl bei den Kriegsgebieten?
+        Wenn ja: Eingabefeld als Optionsfeld mit mehrfachauswahl 
+    - Optionsfeld: Da wo es am meisten gebraucht wird (die spezielle Art des kleidungsstücks)
+    - Transactionlevel am ende der seite, instand nicht notwendig 
+    -Muss ein Eingabe geschehen?
+
+        Hinweis vor eingabe: Eingabe ist nicht zwingend?
+
+5. Button - Regristrieung prüfuen
+    - Link zu einer Zweiten seite
+    - dort alle angbane übersichtlicht mittig in einem Container mit datum und Uhrezit
+    5.1 Button auf der Bestätigungsseite
+    - Linker Button: Angaben ändern -> zurückführen auf die vorherige seite zu der Eingabe Art_der_Spende
+    - Rechter Button: Angaben Bestätigen -> Dankeschön-PopUP - nach Popup direkt zur startseite
+    
+Fehlermeldungen
+    - Über dem Feld bei jedem einzelnen Feld
+Pflichtfeldkennzeichnung
+    - Sternchen
+    - alle #Felder erforderlich
+Button-Zustände
+    - Registrierung prüfen erst klickbar wenn alle eingaben gechehen sind    
+Datenschutzabschnitt
+    -Name Klingel
+
+Layout und NAvigation
+    -Ankerlinks in globaler navigation 
+    -Footer: Rechtliche Hinweise, Impressum, DSVGO
+    - hero bereich
+
+Verhalten am kleinen Bildsschirm ändern?
+    - Buttons, dropdown, Navbar etc 
+
+Sprache und Ansprache 
+    - Gendern
+
+
+Wichtige SPielräume für bericht
+ -PLZ Textfeld oder Dropdown + Was bei nicht übereinstimmung
+ , Empfehlung beim Krisengebiet hilft vs lenkt
+ - Terminvergabe als Scope grenze
+
+
+ Krisengebiet optional: Das ist eine Entscheidung, keine Nebensache. Die Kernidee der Fallstudie ist, 
+ dass Spendende selbst das Zielgebiet wählen. Wenn das Feld optional ist, 
+ was passiert dann bei leerer Auswahl – entscheidet der Verein? Und die Bestätigungsseite muss laut Anforderung i das Krisengebiet ausweisen. 
+ Das ist ein Spielraum, den Du begründen solltest.

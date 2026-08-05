@@ -1,7 +1,19 @@
+import Header from './Header'
+import Hero from "./Hero"
+import Footer from "./Footer"
+
+
+import { kleidungsarten, krisengebiete } from './Listen'
+
+
 function App() {
   return (
     <div>
-      <h1>Kleiderspende</h1>
+      <Header />
+      <Hero />
+      <div>
+      
+      </div>
     </div>
   )
 }

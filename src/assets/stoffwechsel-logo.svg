@@ -1,0 +1,57 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .line {
+        fill: none;
+        stroke: #4E6B4B;
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .text {
+        font-family: Georgia, serif;
+        fill: #3F523D;
+      }
+    </style>
+  </defs>
+
+  <circle class="line" cx="256" cy="180" r="150"/>
+
+  <path class="line"
+        d="M256 90
+           c0-18 14-30 30-30
+           c16 0 28 12 28 28
+           c0 13-8 20-18 25
+           c-9 4-12-10-12 18"/>
+
+  <path class="line"
+        d="M120 220 L256 140 L392 220"/>
+
+  <path class="line"
+        d="M256 255
+           C235 225 195 225 195 260
+           C195 295 235 315 256 340
+           C277 315 317 295 317 260
+           C317 225 277 225 256 255 Z"/>
+
+  <path class="line"
+        d="M340 315
+           C385 275 430 295 430 295
+           C425 350 385 385 340 370
+           C330 345 333 328 340 315 Z"/>
+
+  <path class="line"
+        d="M345 365 C355 340 375 320 410 300"/>
+
+  <text x="256" y="395" class="text" font-size="44" text-anchor="middle" font-weight="bold">
+    Stoffwechsel e.V.
+  </text>
+
+  <text x="256" y="430" class="text" font-size="18" text-anchor="middle">
+    Kleider spenden • Menschen stärken
+  </text>
+
+  <text x="256" y="462" class="text" font-size="22" text-anchor="middle" font-style="italic">
+    Karlsruhe
+  </text>
+</svg>

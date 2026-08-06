@@ -1,15 +1,18 @@
 export const kleidungsarten = [
   "Jacken und Mäntel",
-  "Hosen",
   "Oberteile",
+  "Hosen",
   "Schuhe",
-  "Kinderkleidung"
+  "Kinderkleidung",
+  "Mix",
+  "Sonstige"
 ]
 
 export const krisengebiete = [
-  "Region Nord",
-  "Region Ost",
-  "Region Süd"
+  "Ukraine",
+  "Zentral Asien",
+  "Naher Osten",
+  "Osteuropa",
 ]
 
 export const geschaeftsstellen = [

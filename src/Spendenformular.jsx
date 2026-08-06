@@ -1,6 +1,10 @@
-import { kleidungsarten, krisengebiete } from "./Listen";
+import { useState } from "react";
+import { kleidungsarten, krisengebiete, empfehlungen } from "./Listen";
 
-function Spendenformular() {
+// Empfehlung Krisengebiet
+function Spendenformular({ onWeiter }) {
+  const [kleidungsart, setKleidungsart] = useState("");
+
   return (
     <section id="formular" className="max-w-5xl mx-auto px-4 py-12">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -48,8 +52,6 @@ function Spendenformular() {
           </div>
         </div>
 
-
-
         {/* Eingabe kleidungsart */}
         <div className="mb-6">
           <label htmlFor="kleidungsart" className="block font-semibold mb-2">
@@ -63,6 +65,8 @@ function Spendenformular() {
 
           <select
             id="kleidungsart"
+            value={kleidungsart}
+            onChange={(e) => setKleidungsart(e.target.value)}
             className="w-full border border-gray-300 rounded p-2"
           >
             <option value="">Bitte wählen</option>
@@ -78,9 +82,21 @@ function Spendenformular() {
 
 
 
-            {/* Eingabe Krisengebiet - Fieldset statt div */}
+      <p>neu: {kleidungsart}</p>
+
+        {/* Eingabe Krisengebiet - Fieldset statt div */}
         <fieldset className="mb-8">
           <legend className="block font-semibold mb-2">Krisengebiet</legend>
+        
+        {/* Empfehlung Krisengebiet */}
+          {empfehlungen[kleidungsart] && (
+            <p className="text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded p-3 mb-3">
+              Auf Grundlage Ihrer Angabe zu Kleidungsart empfehlen wir{" "}
+              {empfehlungen[kleidungsart]}. Die Auswahl liegt weiterhin bei
+              Ihnen.
+            </p>
+          )}
+
           {krisengebiete.map((gebiet) => (
             <div key={gebiet} className="flex items-center gap-2 mb-2">
               <input

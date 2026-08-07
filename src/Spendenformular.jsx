@@ -18,44 +18,96 @@ function Spendenformular({ onWeiter }) {
   const [ort, setOrt] = useState("");
   const [ortFehler, setOrtFehler] = useState("");
 
+  // Gesamt Prüfung - Dropdownfelder
+  const [spendenartFehler, setSpendenartFehler] = useState("")
+  const [kleidungsartFehler, setKleidungsartFehler] = useState("")
+
   // Prüffunktionen
+
+  function pruefeSpendenart() {
+  if (spendenart === "") {
+    setSpendenartFehler("Bitte wählen Sie die Art der Spende.");
+    return false;
+  }
+  setSpendenartFehler("");
+  return true;
+  }
+
   function pruefeKlingel() {
     if (klingel.trim() === "") {
       setKlingelFehler("Bitte geben Sie den Namen an der Klingel an.");
+      return false;
     } else {
       setKlingelFehler("");
+      return true;
     }
   }
   function pruefeStrasse() {
     if (strasse.trim() === "") {
       setStrasseFehler("Bitte geben Sie Ihre Straße und Hausnummer an.");
+      return false;
     } else {
       setStrasseFehler("");
+      return true;
     }
   }
   // FUnktion Plz-Plausibilitätprüfung
   function pruefePlz() {
     if (plz.trim() === "") {
       setPlzFehler("Bitte geben Sie Ihre Postleitzahl an.");
-      return;
+      return false;
     } 
     if (plz.length !== 5){
       setPlzFehler("Die eingegebene Postleitzzahl ist ungültig")
-      return;
+      return false;
     }
       if (plz.substring(0, 2) !== geschaeftsstellen[0].plz.substring(0, 2)) {
       setPlzFehler("Diese Postleitzahl liegt außerhalb des Abholgebiets.");
-      return;
+      return false;
     }
-    setPlzFehler("")
+    setPlzFehler("");
+    return true;
   }
   function pruefeOrt() {
     if (ort.trim() === "") {
       setOrtFehler("Bitte geben Sie Ihren Wohnort an.");
+      return false;
     } else {
       setOrtFehler("");
+      return true;
     }
   }
+
+  function pruefeKleidungsart() {
+  if (kleidungsart === "") {
+    setKleidungsartFehler("Bitte wählen Sie die Art der Kleidung.");
+    return false;
+  }
+  setKleidungsartFehler("");
+  return true;
+  }
+
+  // Gesamtprüfung am ende
+
+  function pruefeAlles() {
+  let ok = true;
+
+  if (!pruefeSpendenart()) ok = false;
+  if (!pruefeKleidungsart()) ok = false;
+
+  if (spendenart === "abholung") {
+    if (!pruefeKlingel()) ok = false;
+    if (!pruefeStrasse()) ok = false;
+    if (!pruefePlz()) ok = false;
+    if (!pruefeOrt()) ok = false;
+  }
+
+  return ok;
+  }
+
+
+
+
 
   return (
     <section id="formular" className="max-w-5xl mx-auto px-4 py-12">
@@ -68,6 +120,11 @@ function Spendenformular({ onWeiter }) {
           <label htmlFor="spendenart" className="block font-semibold mb-2">
             Art der Spende <span className="text-red-600">*</span>
           </label>
+
+          {spendenartFehler && (
+            <p className="text-sm text-red-600 mb-1">{spendenartFehler}</p>
+            )}
+
           <select
             id="spendenart"
             // EIngabe an zustand binden
@@ -157,6 +214,11 @@ function Spendenformular({ onWeiter }) {
             Wählen Sie „Mix“, wenn Ih re Spende mehrere Kleidungsarten enthält.
           </p>
 
+          {kleidungsartFehler && (
+            <p className="text-sm text-red-600 mb-1">{kleidungsartFehler}</p>
+              )}
+
+
           <select
             id="kleidungsart"
             value={kleidungsart}
@@ -175,7 +237,6 @@ function Spendenformular({ onWeiter }) {
           </select>
         </div>
 
-        <p>neu: {kleidungsart}</p>
 
         {/* Eingabe Krisengebiet - Fieldset statt div */}
         <fieldset className="mb-8">
@@ -206,6 +267,7 @@ function Spendenformular({ onWeiter }) {
 
         <button
           type="submit"
+           onClick={() => { if (pruefeAlles()) onWeiter() }}
           className="bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700"
         >
           Weiter zur Bestätigung

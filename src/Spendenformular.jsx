@@ -4,6 +4,7 @@ import { kleidungsarten, krisengebiete, empfehlungen } from "./Listen";
 // Empfehlung Krisengebiet
 function Spendenformular({ onWeiter }) {
   const [kleidungsart, setKleidungsart] = useState("");
+  const [spendenart, setSpendenart] = useState("");
 
   return (
     <section id="formular" className="max-w-5xl mx-auto px-4 py-12">
@@ -18,6 +19,9 @@ function Spendenformular({ onWeiter }) {
           </label>
           <select
             id="spendenart"
+            // EIngabe an zustand binden
+            value={spendenart}
+            onChange={(e) => setSpendenart(e.target.value)}
             className="w-full border border-gray-300 rounded p-2"
           >
             <option value="">Bitte wählen</option>
@@ -25,8 +29,8 @@ function Spendenformular({ onWeiter }) {
             <option value="abholung">Abholung durch Sammelfahrzeug</option>
           </select>
         </div>
-
-        <div className="mb-6">
+        {/* Ändern div / fieldset und implement disable */}
+        <fieldset disabled={spendenart !== "abholung"}  className="mb-6">
           <label htmlFor="strasse" className="block font-semibold mb-2">
             Abholadresse
           </label>
@@ -50,7 +54,7 @@ function Spendenformular({ onWeiter }) {
               className="flex-1 border border-gray-300 rounded p-2"
             />
           </div>
-        </div>
+        </fieldset>
 
         {/* Eingabe kleidungsart */}
         <div className="mb-6">
@@ -65,8 +69,9 @@ function Spendenformular({ onWeiter }) {
 
           <select
             id="kleidungsart"
-            value={kleidungsart}
-            onChange={(e) => setKleidungsart(e.target.value)}
+            value={kleidungsart} 
+            // Eingabe an Zustand binden
+            onChange={(e) => setKleidungsart(e.target.value)} 
             className="w-full border border-gray-300 rounded p-2"
           >
             <option value="">Bitte wählen</option>

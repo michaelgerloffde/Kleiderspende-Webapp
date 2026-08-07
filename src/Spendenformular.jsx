@@ -1,10 +1,52 @@
 import { useState } from "react";
 import { kleidungsarten, krisengebiete, empfehlungen } from "./Listen";
 
-// Empfehlung Krisengebiet
+//Zustand anlegen - Empfehlung Krisengebiet
 function Spendenformular({ onWeiter }) {
   const [kleidungsart, setKleidungsart] = useState("");
   const [spendenart, setSpendenart] = useState("");
+  // Pflichtfeldprüfung
+  const [klingel, setKlingel] = useState("");
+  const [klingelFehler, setKlingelFehler] = useState("");
+
+  const [strasse, setStrasse] = useState("");
+  const [strasseFehler, setStrasseFehler] = useState("");
+
+  const [plz, setPlz] = useState("");
+  const [plzFehler, setPlzFehler] = useState("");
+
+  const [ort, setOrt] = useState("");
+  const [ortFehler, setOrtFehler] = useState("");
+
+  // Prüffunktionen
+  function pruefeKlingel() {
+    if (klingel.trim() === "") {
+      setKlingelFehler("Bitte geben Sie den Namen an der Klingel an.");
+    } else {
+      setKlingelFehler("");
+    }
+  }
+  function pruefeStrasse() {
+    if (strasse.trim() === "") {
+      setStrasseFehler("Bitte geben Sie Ihre Straße und Hausnummer an.");
+    } else {
+      setStrasseFehler("");
+    }
+  }
+  function pruefePlz() {
+    if (plz.trim() === "") {
+      setPlzFehler("Bitte geben Sie Ihre Postleitzahl an.");
+    } else {
+      setPlzFehler("");
+    }
+  }
+  function pruefeOrt() {
+    if (ort.trim() === "") {
+      setOrtFehler("Bitte geben Sie Ihren Wohnort an.");
+    } else {
+      setOrtFehler("");
+    }
+  }
 
   return (
     <section id="formular" className="max-w-5xl mx-auto px-4 py-12">
@@ -30,29 +72,68 @@ function Spendenformular({ onWeiter }) {
           </select>
         </div>
         {/* Ändern div / fieldset und implement disable */}
-        <fieldset disabled={spendenart !== "abholung"}  className="mb-6">
+        <fieldset disabled={spendenart !== "abholung"} className="mb-6">
           <label htmlFor="strasse" className="block font-semibold mb-2">
             Abholadresse
           </label>
+
+          {/* Pflichfelprüfungen */}
+          {klingelFehler && (
+            <p className="text-sm text-red-600 mb-1">{klingelFehler}</p>
+          )}
+          
+          <input
+            id="klingel"
+            type="text"
+            value={klingel}
+            onChange={(e) => setKlingel(e.target.value)}
+            onBlur={pruefeKlingel}
+            placeholder="Name an der Klingel"
+            className="w-full border border-gray-300 rounded p-2 mb-3"
+          />
+          {strasseFehler && (
+            <p className="text-sm text-red-600 mb-1">{strasseFehler}</p>
+          )}
           <input
             id="strasse"
             type="text"
+            value={strasse}
+            onChange={(e) => setStrasse(e.target.value)}
+            onBlur={pruefeStrasse}
             placeholder="Straße und Hausnummer"
             className="w-full border border-gray-300 rounded p-2 mb-3"
           />
+
           <div className="flex gap-3">
+            <div>
+            {plzFehler && (
+              <p className="text-sm text-red-600 mb-1">{plzFehler}</p>
+            )}
+
             <input
               id="plz"
               type="text"
+              value={plz}
+              onChange={(e) => setPlz(e.target.value)}
+              onBlur={pruefePlz}
               placeholder="PLZ"
               className="w-32 border border-gray-300 rounded p-2"
             />
-            <input
-              id="ort"
-              type="text"
-              placeholder="Ort"
-              className="flex-1 border border-gray-300 rounded p-2"
-            />
+            </div>
+            <div>
+              {ortFehler && (
+                <p className="text-sm text-red-600 mb-1">{ortFehler}</p>
+              )}
+              <input
+                id="ort"
+                type="text"
+                value={ort}
+                onChange={(e) => setOrt(e.target.value)}
+                onBlur={pruefeOrt}
+                placeholder="Ort"
+                className="flex-1 border border-gray-300 rounded p-2"
+              />
+            </div>
           </div>
         </fieldset>
 
@@ -69,9 +150,9 @@ function Spendenformular({ onWeiter }) {
 
           <select
             id="kleidungsart"
-            value={kleidungsart} 
+            value={kleidungsart}
             // Eingabe an Zustand binden
-            onChange={(e) => setKleidungsart(e.target.value)} 
+            onChange={(e) => setKleidungsart(e.target.value)}
             className="w-full border border-gray-300 rounded p-2"
           >
             <option value="">Bitte wählen</option>
@@ -85,15 +166,13 @@ function Spendenformular({ onWeiter }) {
           </select>
         </div>
 
-
-
-      <p>neu: {kleidungsart}</p>
+        <p>neu: {kleidungsart}</p>
 
         {/* Eingabe Krisengebiet - Fieldset statt div */}
         <fieldset className="mb-8">
           <legend className="block font-semibold mb-2">Krisengebiet</legend>
-        
-        {/* Empfehlung Krisengebiet */}
+
+          {/* Empfehlung Krisengebiet */}
           {empfehlungen[kleidungsart] && (
             <p className="text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded p-3 mb-3">
               Auf Grundlage Ihrer Angabe zu Kleidungsart empfehlen wir{" "}

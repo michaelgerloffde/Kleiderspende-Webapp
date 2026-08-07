@@ -26,6 +26,5 @@ export const empfehlungen = {
 
 
 export const geschaeftsstellen = [
-  { name: "Geschäftsstelle Musterstadt", plz: "12345" },
-  { name: "Geschäftsstelle Beispielheim", plz: "54321" }
+  { name: "Geschäftsstelle Karlsruhe", plz: "76131" },
 ]

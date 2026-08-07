@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { kleidungsarten, krisengebiete, empfehlungen } from "./Listen";
+import { kleidungsarten, krisengebiete, empfehlungen, geschaeftsstellen } from "./Listen";
 
 //Zustand anlegen - Empfehlung Krisengebiet
 function Spendenformular({ onWeiter }) {
@@ -33,12 +33,21 @@ function Spendenformular({ onWeiter }) {
       setStrasseFehler("");
     }
   }
+  // FUnktion Plz-Plausibilitätprüfung
   function pruefePlz() {
     if (plz.trim() === "") {
       setPlzFehler("Bitte geben Sie Ihre Postleitzahl an.");
-    } else {
-      setPlzFehler("");
+      return;
+    } 
+    if (plz.length !== 5){
+      setPlzFehler("Die eingegebene Postleitzzahl ist ungültig")
+      return;
     }
+      if (plz.substring(0, 2) !== geschaeftsstellen[0].plz.substring(0, 2)) {
+      setPlzFehler("Diese Postleitzahl liegt außerhalb des Abholgebiets.");
+      return;
+    }
+    setPlzFehler("")
   }
   function pruefeOrt() {
     if (ort.trim() === "") {

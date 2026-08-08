@@ -36,7 +36,6 @@ function App() {
                 setZeitpunkt(new Date());
                 setSchritt("bestaetigung");
               }}
-
               spendenart={spendenart}
               setSpendenart={setSpendenart}
               klingel={klingel}
@@ -61,7 +60,10 @@ function App() {
             spendenart={spendenart}
             kleidungsart={kleidungsart}
             krisengebiet={krisengebiet}
-            
+            klingel={klingel}
+            strasse={strasse}
+            plz={plz}
+            ort={ort}
           />
         )}
       </main>

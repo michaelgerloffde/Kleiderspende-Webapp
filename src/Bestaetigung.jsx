@@ -1,4 +1,4 @@
-function Bestaetigung() {
+function Bestaetigung({ spendenart, kleidungsart, krisengebiet, zeitpunkt}) {
   return (
     <section className="max-w-5xl mx-auto px-4 py-12">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -9,23 +9,23 @@ function Bestaetigung() {
         <dl className="space-y-3">
           <div className="flex">
             <dt className="w-48 font-semibold">Art der Spende</dt>
-            <dd>Platzhalter</dd>
+            <dd>{spendenart}</dd>
           </div>
           <div className="flex">
             <dt className="w-48 font-semibold">Art der Kleidung</dt>
-            <dd>Platzhalter</dd>
+            <dd>{kleidungsart}</dd>
           </div>
           <div className="flex">
             <dt className="w-48 font-semibold">Krisengebiet</dt>
-            <dd>Platzhalter</dd>
+            <dd>{krisengebiet}</dd>
           </div>
           <div className="flex">
             <dt className="w-48 font-semibold">Datum</dt>
-            <dd>Platzhalter</dd>
+            <dd>{zeitpunkt.toLocaleDateString("de-DE")}</dd>
           </div>
           <div className="flex">
             <dt className="w-48 font-semibold">Uhrzeit</dt>
-            <dd>Platzhalter</dd>
+            <dd>{zeitpunkt.toLocaleTimeString("de-DE")} Uhr</dd>
           </div>
           <div className="flex">
             <dt className="w-48 font-semibold">Ort</dt>

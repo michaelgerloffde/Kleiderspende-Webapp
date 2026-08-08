@@ -1,21 +1,26 @@
 import { useState } from "react";
 import { kleidungsarten, krisengebiete, empfehlungen, geschaeftsstellen } from "./Listen";
 
-//Zustand anlegen - Empfehlung Krisengebiet
-function Spendenformular({ onWeiter }) {
-  const [kleidungsart, setKleidungsart] = useState("");
-  const [spendenart, setSpendenart] = useState("");
+
+// Werte und Setter entgegennehmen 
+function Spendenformular({
+  onWeiter,
+  spendenart, setSpendenart,
+  klingel, setKlingel,
+  strasse, setStrasse,
+  plz, setPlz,
+  ort, setOrt,
+  kleidungsart, setKleidungsart,
+  krisengebiet, setKrisengebiet
+}) { 
   // Pflichtfeldprüfung
-  const [klingel, setKlingel] = useState("");
+
   const [klingelFehler, setKlingelFehler] = useState("");
 
-  const [strasse, setStrasse] = useState("");
   const [strasseFehler, setStrasseFehler] = useState("");
 
-  const [plz, setPlz] = useState("");
   const [plzFehler, setPlzFehler] = useState("");
 
-  const [ort, setOrt] = useState("");
   const [ortFehler, setOrtFehler] = useState("");
 
   // Gesamt Prüfung - Dropdownfelder
@@ -266,7 +271,7 @@ function Spendenformular({ onWeiter }) {
         </fieldset>
 
         <button
-          type="submit"
+          type="button"
            onClick={() => { if (pruefeAlles()) onWeiter() }}
           className="bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700"
         >

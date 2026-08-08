@@ -262,6 +262,11 @@ function Spendenformular({
                 id={gebiet}
                 type="radio"
                 name="krisengebiet"
+                
+                // gespeicherter Wert
+                checked={krisengebiet === gebiet}
+                onChange={(e) => setKrisengebiet(e.target.value)}
+                
                 value={gebiet}
                 className="w-4 h-4"
               />

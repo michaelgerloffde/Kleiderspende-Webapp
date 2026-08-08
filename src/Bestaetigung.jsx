@@ -9,7 +9,12 @@ function Bestaetigung({ spendenart, kleidungsart, krisengebiet, zeitpunkt}) {
         <dl className="space-y-3">
           <div className="flex">
             <dt className="w-48 font-semibold">Art der Spende</dt>
-            <dd>{spendenart}</dd>
+
+            {/* Kurz if für Art der Spende  */}
+            <dd>{spendenart === "abholung"
+                ? "Abholung durch Sammelfahrzeug"
+                : "Übergabe an der Geschäftsstelle"}</dd>
+                
           </div>
           <div className="flex">
             <dt className="w-48 font-semibold">Art der Kleidung</dt>

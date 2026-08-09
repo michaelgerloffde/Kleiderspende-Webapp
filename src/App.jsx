@@ -4,6 +4,7 @@ import Hero from "./Hero";
 import Footer from "./Footer";
 import Bestaetigung from "./Bestaetigung";
 import Spendenformular from "./Spendenformular";
+import Danke from "./Danke";
 
 import { kleidungsarten, krisengebiete } from "./Listen";
 
@@ -21,6 +22,17 @@ function App() {
   const [kleidungsart, setKleidungsart] = useState("");
   const [krisengebiet, setKrisengebiet] = useState("");
 
+  // Zurücksetzen der Werte nach Bestätigung
+  function zuruecksetzen() {
+    setSpendenart("");
+    setKlingel("");
+    setStrasse("");
+    setPlz("");
+    setOrt("");
+    setKleidungsart("");
+    setKrisengebiet("");
+    setSchritt("formular");
+  }
   return (
     <div>
       <Header />
@@ -64,8 +76,14 @@ function App() {
             strasse={strasse}
             plz={plz}
             ort={ort}
+            // Prop zurück bei Falschen Angaben
+            onZurueck={() => setSchritt("formular")}
+            // Dankesfunktion bei Bestätigen
+            onBestaetigen={() => setSchritt("dank")}
           />
         )}
+        {/* Dankesschritt */}
+        {schritt === "dank" && <Danke onNeu={zuruecksetzen} />}
       </main>
       <Footer />
 

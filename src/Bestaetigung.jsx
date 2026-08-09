@@ -1,3 +1,5 @@
+import { geschaeftsstellen } from './Listen'
+
 function Bestaetigung({
   spendenart,
   kleidungsart,
@@ -7,6 +9,8 @@ function Bestaetigung({
   strasse,
   plz,
   ort,
+  onZurueck,
+  onBestaetigen
 }) {
   return (
     <section className="max-w-5xl mx-auto px-4 py-12">
@@ -63,18 +67,21 @@ function Bestaetigung({
             <dt className="w-56 font-semibold">Uhrzeit</dt>
             <dd>{zeitpunkt.toLocaleTimeString("de-DE")} Uhr</dd>
           </div>
-          <div className="flex">
-            <dt className="w-56font-semibold">Ort</dt>
-            <dd>Platzhalter</dd>
-          </div>
+          {/* Anzeige Ort bei Übergabe ansonsten eingebundene Adresselemente */}
+          {spendenart === "uebergabe" && (
+            <div className="flex">
+              <dt className="w-56 pr-4 font-semibold">Ort</dt>
+              <dd>{geschaeftsstellen[0].name}</dd>
+            </div>
+          )}
         </dl>
       </div>
 
       <div className="flex gap-4">
-        <button className="border border-gray-400 px-6 py-3 rounded font-semibold hover:bg-gray-100">
+        <button  onClick={onZurueck} className="border border-gray-400 px-6 py-3 rounded font-semibold hover:bg-gray-100">
           Angaben ändern
         </button>
-        <button className="bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700">
+        <button onClick= {onBestaetigen} className="bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700">
           Verbindlich bestätigen
         </button>
       </div>

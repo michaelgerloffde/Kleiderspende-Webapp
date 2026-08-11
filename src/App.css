@@ -182,3 +182,28 @@
     border-right-color: var(--border);
   }
 }
+
+
+/* Formatierung Logo */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-area img {
+  width: 58px;
+  height: 58px;
+}
+
+.logo-area h1 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.logo {
+  position: relative;
+  top: 5px;
+}

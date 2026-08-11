@@ -2,9 +2,14 @@ function Header() {
   return (
     <header className="bg-white border-b border-gray-200">
       <div className="max-w-5xl mx-auto flex items-center justify-between p-4">
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900">
-          Stoffwechsel e.V.
-        </h1>
+       
+       {/* Div Name und logo */}
+        <div className="logo-area flex items-center gap-3">
+          <img src="/stoffwechsel-logo- ohne-schrift.svg" alt="Logo Stoffwechsel e.V." className=" logo h-10" />
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900">
+            Stoffwechsel e.V.
+          </h1>
+        </div>
 
         {/* ab Tablet */}
         <nav className="hidden md:block">

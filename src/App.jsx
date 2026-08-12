@@ -36,7 +36,9 @@ function App() {
   }
   return (
     <div>
-      <Header />
+      <Header 
+        zeigeNavigation={schritt === "formular"}
+      />
       <main>
         {/* Schritt für Seitenwechsel */}
         {schritt === "formular" && (

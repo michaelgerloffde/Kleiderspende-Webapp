@@ -16,13 +16,13 @@ function Header({zeigeNavigation}) {
         <nav className="hidden md:block">
           <ul className="flex gap-6 text-gray-700">
             <li>
-              <a href="#formular" className="hover:text-blue-600">
-                Spenden
+              <a href="#" className="hover:text-blue-600">
+                Startseite
               </a>
             </li>
             <li>
-              <a href="#ablauf" className="hover:text-blue-600">
-                Ablauf
+              <a href="#formular" className="hover:text-blue-600">
+                Spenden
               </a>
             </li>
             <li>
@@ -40,13 +40,13 @@ function Header({zeigeNavigation}) {
           <summary className="cursor-pointer text-2xl list-none">☰</summary>
           <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-md py-2 w-44 text-gray-700">
             <li>
-              <a href="#formular" className="block px-4 py-2 hover:bg-gray-100">
-                Spenden
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                Startseite
               </a>
             </li>
             <li>
-              <a href="#ablauf" className="block px-4 py-2 hover:bg-gray-100">
-                Ablauf
+              <a href="#formular" className="block px-4 py-2 hover:bg-gray-100">
+                Spenden
               </a>
             </li>
             <li>

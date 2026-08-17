@@ -11,13 +11,13 @@ export const kleidungsarten = [
 export const krisengebiete = [
   "Ukraine",
   "Zentralasien",
-  "Naher-Osten",
+  "Ostafrika",
   "Osteuropa",
 ]
 
 export const empfehlungen = {
   "Jacken und Mäntel" : "Ukraine",
-  "Schuhe" : "Naher-Osten",
+  "Schuhe" : "Ostafrika",
   "Kinderkleidung" : "Zentralasien"
 }
 

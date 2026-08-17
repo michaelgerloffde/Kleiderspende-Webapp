@@ -74,16 +74,16 @@ function Spendenformular({
       setPlzFehler("Bitte geben Sie Ihre Postleitzahl an.");
       return false;
     }
-    // Längenprüfung + Zifferneingabe 
-      if (!/^\d{5}$/.test(plz.trim())) {
+    // Längenprüfung + Zifferneingabe
+    if (!/^\d{5}$/.test(plz.trim())) {
       setPlzFehler("Bitte geben Sie eine Postleitzahl aus fünf Ziffern an.");
       return false;
-     }
-    
+    }
+
     if (plz.substring(0, 2) !== geschaeftsstellen[0].plz.substring(0, 2)) {
       setPlzFehler(
         "Diese Postleitzahl liegt außerhalb des Abholgebiets. " +
-        "Bitte prüfen Sie Ihre Eingabe oder wählen Sie die Übergabe an der Geschäftsstelle."
+          "Bitte prüfen Sie Ihre Eingabe oder wählen Sie die Übergabe an der Geschäftsstelle.",
       );
       return false;
     }
@@ -149,12 +149,12 @@ function Spendenformular({
             value={spendenart}
             // Zurücksetzen der Meldungen
             onChange={(e) => {
-              setSpendenart(e.target.value)
+              setSpendenart(e.target.value);
               if (e.target.value !== "abholung") {
-                setKlingelFehler("")
-                setStrasseFehler("")
-                setPlzFehler("")
-                setOrtFehler("")
+                setKlingelFehler("");
+                setStrasseFehler("");
+                setPlzFehler("");
+                setOrtFehler("");
               }
             }}
             className="w-full border border-gray-300 rounded p-2"
@@ -166,10 +166,11 @@ function Spendenformular({
         </div>
         {/* Ändern div / fieldset und implement disable */}
         <fieldset disabled={spendenart !== "abholung"} className="mb-6">
-          <label htmlFor="strasse" className="block font-semibold mb-2">
-            Abholadresse
-          </label>
+          <legend className="block font-semibold mb-2">Abholadresse</legend>
 
+          <label htmlFor="klingel" className="block mb-1">
+            Name an der Klingel <span className="text-red-600"> *</span>
+          </label>
           {/* Pflichfelprüfungen */}
           {klingelFehler && (
             <p className="text-sm text-red-600 mb-1">{klingelFehler}</p>
@@ -181,9 +182,13 @@ function Spendenformular({
             value={klingel}
             onChange={(e) => setKlingel(e.target.value)}
             onBlur={pruefeKlingel}
-            placeholder="Name an der Klingel"
+            placeholder=" z.B. Müller "
             className="w-full border border-gray-300 rounded p-2 mb-3"
           />
+
+          <label htmlFor="strasse" className="block mb-1">
+            Straße und Hausnummer<span className="text-red-600"> *</span>
+          </label>
           {strasseFehler && (
             <p className="text-sm text-red-600 mb-1">{strasseFehler}</p>
           )}
@@ -193,12 +198,15 @@ function Spendenformular({
             value={strasse}
             onChange={(e) => setStrasse(e.target.value)}
             onBlur={pruefeStrasse}
-            placeholder="Straße und Hausnummer"
+            placeholder=" z.B. Kaiserstraße 12."
             className="w-full border border-gray-300 rounded p-2 mb-3"
           />
 
           <div className="flex gap-3">
             <div>
+              <label htmlFor="plz" className="block mb-1">
+                PLZ<span className="text-red-600"> *</span>
+              </label>
               {plzFehler && (
                 <p className="text-sm text-red-600 mb-1">{plzFehler}</p>
               )}
@@ -209,11 +217,14 @@ function Spendenformular({
                 value={plz}
                 onChange={(e) => setPlz(e.target.value)}
                 onBlur={pruefePlz}
-                placeholder="PLZ"
+                placeholder=" z.B. 76131"
                 className="w-32 border border-gray-300 rounded p-2"
               />
             </div>
             <div>
+              <label htmlFor="ort" className="block mb-1">
+               Ort<span className="text-red-600"> *</span>
+              </label>
               {ortFehler && (
                 <p className="text-sm text-red-600 mb-1">{ortFehler}</p>
               )}
@@ -223,7 +234,7 @@ function Spendenformular({
                 value={ort}
                 onChange={(e) => setOrt(e.target.value)}
                 onBlur={pruefeOrt}
-                placeholder="Ort"
+                placeholder=" z.B. Karlsruhe"
                 className="flex-1 border border-gray-300 rounded p-2"
               />
             </div>
@@ -264,9 +275,10 @@ function Spendenformular({
         {/* Eingabe Krisengebiet - Fieldset statt div */}
         <fieldset className="mb-8">
           <legend className="block font-semibold mb-2">Krisengebiet</legend>
-            <p className="text-sm text-gray-600 mb-2">
-              Diese Angabe ist freiwillig. Ohne Auswahl übernimmt der Verein die Zuordnung.
-            </p>
+          <p className="text-sm text-gray-600 mb-2">
+            Diese Angabe ist freiwillig. Ohne Auswahl übernimmt der Verein die
+            Zuordnung.
+          </p>
           {/* Empfehlung Krisengebiet */}
           {empfehlungen[kleidungsart] && (
             <p className="text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded p-3 mb-3">

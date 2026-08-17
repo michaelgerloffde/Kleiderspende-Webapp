@@ -7,7 +7,6 @@ import Bestaetigung from "./Bestaetigung";
 import Spendenformular from "./Spendenformular";
 import Danke from "./Danke";
 
-import { kleidungsarten, krisengebiete } from "./Listen";
 
 function App() {
   const [schritt, setSchritt] = useState("formular");
@@ -90,7 +89,7 @@ function App() {
       </main>
       <Footer />
 
-      <div></div>
+     
     </div>
   );
 }

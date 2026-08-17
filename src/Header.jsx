@@ -4,8 +4,8 @@ function Header({zeigeNavigation}) {
       <div className="max-w-5xl mx-auto flex items-center justify-between p-4">
        
        {/* Div Name und logo */}
-        <div className="logo-area flex items-center gap-3">
-          <img src="/stoffwechsel-logo- ohne-schrift.svg" alt="Logo Stoffwechsel e.V." className=" logo h-10" />
+        <div className="flex items-center gap-3">
+          <img src="/stoffwechsel-logo- ohne-schrift.svg" alt="Logo Stoffwechsel e.V." className="h-14 relative top-[5px]" />
           <h1 className="text-xl md:text-2xl font-bold text-gray-900">
             Stoffwechsel e.V.
           </h1>

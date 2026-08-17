@@ -57,8 +57,8 @@ function Bestaetigung({
           </div>
           <div className="flex">
             <dt className="w-56 font-semibold">Krisengebiet</dt>
-            <dd>{krisengebiet}</dd>
-          </div>
+            <dd>{krisengebiet || "Keine Präferenz – Zuordnung durch den Verein"}</dd>     
+         </div>
           <div className="flex">
             <dt className="w-56 font-semibold">Datum</dt>
             <dd>{zeitpunkt.toLocaleDateString("de-DE")}</dd>

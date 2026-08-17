@@ -10,15 +10,15 @@ export const kleidungsarten = [
 
 export const krisengebiete = [
   "Ukraine",
-  "Zentral Asien",
-  "Naher Osten",
+  "Zentralasien",
+  "Naher-Osten",
   "Osteuropa",
 ]
 
 export const empfehlungen = {
   "Jacken und Mäntel" : "Ukraine",
-  "Schuhe" : "Naher Osten",
-  "Kinderkleidung" : "Zentral Asien"
+  "Schuhe" : "Naher-Osten",
+  "Kinderkleidung" : "Zentralasien"
 }
 
 
@@ -26,5 +26,5 @@ export const empfehlungen = {
 
 
 export const geschaeftsstellen = [
-  { name: "Geschäftsstelle Karlsruhe", plz: "76131" },
+  { name: "Geschäftsstelle Karlsruhe", strasse: "Bleierstraße 1", plz: "76131", ort: "Karlsruhe" }
 ]

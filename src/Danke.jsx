@@ -5,8 +5,7 @@ function Danke({ onNeu }) {
         Vielen Dank für Ihre Spende
       </h2>
       <p className="text-gray-700 mb-8 max-w-2xl">
-        Ihre Registrierung wurde entgegengenommen. Sie erhalten in Kürze eine
-        Bestätigung.
+        Ihre Registrierung wurde entgegengenommen und die Angaben liegen dem Verein vor.
       </p>
       <button
         onClick={onNeu}

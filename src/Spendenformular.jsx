@@ -1,18 +1,29 @@
 import { useState } from "react";
-import { kleidungsarten, krisengebiete, empfehlungen, geschaeftsstellen } from "./Listen";
+import {
+  kleidungsarten,
+  krisengebiete,
+  empfehlungen,
+  geschaeftsstellen,
+} from "./Listen";
 
-
-// Werte und Setter entgegennehmen 
+// Werte und Setter entgegennehmen
 function Spendenformular({
   onWeiter,
-  spendenart, setSpendenart,
-  klingel, setKlingel,
-  strasse, setStrasse,
-  plz, setPlz,
-  ort, setOrt,
-  kleidungsart, setKleidungsart,
-  krisengebiet, setKrisengebiet
-}) { 
+  spendenart,
+  setSpendenart,
+  klingel,
+  setKlingel,
+  strasse,
+  setStrasse,
+  plz,
+  setPlz,
+  ort,
+  setOrt,
+  kleidungsart,
+  setKleidungsart,
+  krisengebiet,
+  setKrisengebiet,
+}) {
   // Pflichtfeldprüfung
 
   const [klingelFehler, setKlingelFehler] = useState("");
@@ -24,18 +35,18 @@ function Spendenformular({
   const [ortFehler, setOrtFehler] = useState("");
 
   // Gesamt Prüfung - Dropdownfelder
-  const [spendenartFehler, setSpendenartFehler] = useState("")
-  const [kleidungsartFehler, setKleidungsartFehler] = useState("")
+  const [spendenartFehler, setSpendenartFehler] = useState("");
+  const [kleidungsartFehler, setKleidungsartFehler] = useState("");
 
   // Prüffunktionen
 
   function pruefeSpendenart() {
-  if (spendenart === "") {
-    setSpendenartFehler("Bitte wählen Sie die Art der Spende.");
-    return false;
-  }
-  setSpendenartFehler("");
-  return true;
+    if (spendenart === "") {
+      setSpendenartFehler("Bitte wählen Sie die Art der Spende.");
+      return false;
+    }
+    setSpendenartFehler("");
+    return true;
   }
 
   function pruefeKlingel() {
@@ -57,17 +68,23 @@ function Spendenformular({
     }
   }
   // FUnktion Plz-Plausibilitätprüfung
+  // Leerprüfung
   function pruefePlz() {
     if (plz.trim() === "") {
       setPlzFehler("Bitte geben Sie Ihre Postleitzahl an.");
       return false;
-    } 
-    if (plz.length !== 5){
-      setPlzFehler("Die eingegebene Postleitzzahl ist ungültig")
-      return false;
     }
-      if (plz.substring(0, 2) !== geschaeftsstellen[0].plz.substring(0, 2)) {
-      setPlzFehler("Diese Postleitzahl liegt außerhalb des Abholgebiets.");
+    // Längenprüfung + Zifferneingabe 
+      if (!/^\d{5}$/.test(plz.trim())) {
+      setPlzFehler("Bitte geben Sie eine Postleitzahl aus fünf Ziffern an.");
+      return false;
+     }
+    
+    if (plz.substring(0, 2) !== geschaeftsstellen[0].plz.substring(0, 2)) {
+      setPlzFehler(
+        "Diese Postleitzahl liegt außerhalb des Abholgebiets. " +
+        "Bitte prüfen Sie Ihre Eingabe oder wählen Sie die Übergabe an der Geschäftsstelle."
+      );
       return false;
     }
     setPlzFehler("");
@@ -84,35 +101,31 @@ function Spendenformular({
   }
 
   function pruefeKleidungsart() {
-  if (kleidungsart === "") {
-    setKleidungsartFehler("Bitte wählen Sie die Art der Kleidung.");
-    return false;
-  }
-  setKleidungsartFehler("");
-  return true;
+    if (kleidungsart === "") {
+      setKleidungsartFehler("Bitte wählen Sie die Art der Kleidung.");
+      return false;
+    }
+    setKleidungsartFehler("");
+    return true;
   }
 
   // Gesamtprüfung am ende
 
   function pruefeAlles() {
-  let ok = true;
+    let ok = true;
 
-  if (!pruefeSpendenart()) ok = false;
-  if (!pruefeKleidungsart()) ok = false;
+    if (!pruefeSpendenart()) ok = false;
+    if (!pruefeKleidungsart()) ok = false;
 
-  if (spendenart === "abholung") {
-    if (!pruefeKlingel()) ok = false;
-    if (!pruefeStrasse()) ok = false;
-    if (!pruefePlz()) ok = false;
-    if (!pruefeOrt()) ok = false;
+    if (spendenart === "abholung") {
+      if (!pruefeKlingel()) ok = false;
+      if (!pruefeStrasse()) ok = false;
+      if (!pruefePlz()) ok = false;
+      if (!pruefeOrt()) ok = false;
+    }
+
+    return ok;
   }
-
-  return ok;
-  }
-
-
-
-
 
   return (
     <section id="formular" className="max-w-5xl mx-auto px-4 py-12">
@@ -120,7 +133,7 @@ function Spendenformular({
         Spende registrieren
       </h2>
 
-      <form className="max-w-2xl">
+      <form onSubmit={(e) => e.preventDefault()} className="max-w-2xl">
         <div className="mb-6">
           <label htmlFor="spendenart" className="block font-semibold mb-2">
             Art der Spende <span className="text-red-600">*</span>
@@ -128,13 +141,22 @@ function Spendenformular({
 
           {spendenartFehler && (
             <p className="text-sm text-red-600 mb-1">{spendenartFehler}</p>
-            )}
+          )}
 
           <select
             id="spendenart"
             // EIngabe an zustand binden
             value={spendenart}
-            onChange={(e) => setSpendenart(e.target.value)}
+            // Zurücksetzen der Meldungen
+            onChange={(e) => {
+              setSpendenart(e.target.value)
+              if (e.target.value !== "abholung") {
+                setKlingelFehler("")
+                setStrasseFehler("")
+                setPlzFehler("")
+                setOrtFehler("")
+              }
+            }}
             className="w-full border border-gray-300 rounded p-2"
           >
             <option value="">Bitte wählen</option>
@@ -152,7 +174,7 @@ function Spendenformular({
           {klingelFehler && (
             <p className="text-sm text-red-600 mb-1">{klingelFehler}</p>
           )}
-          
+
           <input
             id="klingel"
             type="text"
@@ -177,19 +199,19 @@ function Spendenformular({
 
           <div className="flex gap-3">
             <div>
-            {plzFehler && (
-              <p className="text-sm text-red-600 mb-1">{plzFehler}</p>
-            )}
+              {plzFehler && (
+                <p className="text-sm text-red-600 mb-1">{plzFehler}</p>
+              )}
 
-            <input
-              id="plz"
-              type="text"
-              value={plz}
-              onChange={(e) => setPlz(e.target.value)}
-              onBlur={pruefePlz}
-              placeholder="PLZ"
-              className="w-32 border border-gray-300 rounded p-2"
-            />
+              <input
+                id="plz"
+                type="text"
+                value={plz}
+                onChange={(e) => setPlz(e.target.value)}
+                onBlur={pruefePlz}
+                placeholder="PLZ"
+                className="w-32 border border-gray-300 rounded p-2"
+              />
             </div>
             <div>
               {ortFehler && (
@@ -207,7 +229,6 @@ function Spendenformular({
             </div>
           </div>
         </fieldset>
-
         {/* Eingabe kleidungsart */}
         <div className="mb-6">
           <label htmlFor="kleidungsart" className="block font-semibold mb-2">
@@ -216,13 +237,12 @@ function Spendenformular({
           {/*Hinweis für häufigsten Use-Case*/}
 
           <p className="text-sm text-gray-600 mb-2">
-            Wählen Sie „Mix“, wenn Ih re Spende mehrere Kleidungsarten enthält.
+            Wählen Sie „Mix“, wenn Ihre Spende mehrere Kleidungsarten enthält.
           </p>
 
           {kleidungsartFehler && (
             <p className="text-sm text-red-600 mb-1">{kleidungsartFehler}</p>
-              )}
-
+          )}
 
           <select
             id="kleidungsart"
@@ -241,12 +261,12 @@ function Spendenformular({
             ))}
           </select>
         </div>
-
-
         {/* Eingabe Krisengebiet - Fieldset statt div */}
         <fieldset className="mb-8">
           <legend className="block font-semibold mb-2">Krisengebiet</legend>
-
+            <p className="text-sm text-gray-600 mb-2">
+              Diese Angabe ist freiwillig. Ohne Auswahl übernimmt der Verein die Zuordnung.
+            </p>
           {/* Empfehlung Krisengebiet */}
           {empfehlungen[kleidungsart] && (
             <p className="text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded p-3 mb-3">
@@ -262,11 +282,9 @@ function Spendenformular({
                 id={gebiet}
                 type="radio"
                 name="krisengebiet"
-                
                 // gespeicherter Wert
                 checked={krisengebiet === gebiet}
                 onChange={(e) => setKrisengebiet(e.target.value)}
-                
                 value={gebiet}
                 className="w-4 h-4"
               />
@@ -274,10 +292,11 @@ function Spendenformular({
             </div>
           ))}
         </fieldset>
-
         <button
           type="button"
-           onClick={() => { if (pruefeAlles()) onWeiter() }}
+          onClick={() => {
+            if (pruefeAlles()) onWeiter();
+          }}
           className="bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700"
         >
           Weiter zur Bestätigung

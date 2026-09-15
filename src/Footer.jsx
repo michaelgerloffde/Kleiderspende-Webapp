@@ -15,8 +15,8 @@ function Footer() {
           <div className="mt-2 space-y-1">
             <p>Stoffwechsel e.V.</p>
             <p>Bleierstraße 1, 76131 Karlsruhe</p>
-            <p>Vertreten durch den Vorstand: [Name]</p>
-            <p>Registergericht: Amtsgericht Karlsruhe, VR [Nummer]</p>
+            <p>Vertreten durch den Vorstand: Max Maier</p>
+            <p>Registergericht: Amtsgericht Karlsruhe, VR 283478472</p>
             <p>Kontakt: info@stoffwechsel-ev.de</p>
           </div>
         </details>
